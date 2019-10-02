@@ -1,0 +1,7 @@
+Abstract for Final Project
+
+A small, 2D, top-down style game. Will have multiple rooms that the player can progress through, 
+collecting weapons and upgrades along the way. Weapon types will range from melee to ranged,
+in the form of guns, magic spells, or other projectiles. The player will encounter enemies and traps,
+and once the player dies they will be sent back to the start of the game. The game will be written with
+PyGame.
