@@ -5,17 +5,16 @@ import tileset
 
 pygame.init()
 
-screenWidth = 32*16
-screenHeight = 32*16
-tile_width = 16
-tile_height = 16
+screenWidth = tileset.tile_size * tileset.map_width
+screenHeight = tileset.tile_size * tileset.map_height
+
 
 window = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption('Dude.Game')
 
 clock = pygame.time.Clock()
 
-table = tileset.load_tile_table("res/bettertileset.png", tile_width, tile_height)
+table = tileset.load_tile_table("res/bettertileset.png",tileset.tile_size, tileset.tile_size)
 tileset.draw_map(window, table)
 player = player(200, 300, 32, 32)
 
