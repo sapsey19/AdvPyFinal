@@ -3,7 +3,8 @@ import pygame.locals
 from functools import reduce
 import collider
 
-coll_pos_list = []
+
+map_image_list = []
 
 map_width = 32
 map_height = 32
@@ -22,9 +23,7 @@ def load_tile_table(filename, width, height):
             rect = (tile_y*width, tile_x*height, width, height)
             line.append(image.subsurface(rect))
     return tile_table
-
-def draw_map(window, table):
-
+def load_map(table):
     f = open('res/map3.txt')
     #flattens 2d array of images
     block_id_list = reduce(lambda z, y :z + y, table)
@@ -38,9 +37,15 @@ def draw_map(window, table):
     for y in range(0, map_width):
         for x in range(0, map_height):
             scaled_image = pygame.transform.scale(block_id_list[map_id[counter]], (tile_size, tile_size))
-            #window.blit(block_id_list[map_id[counter]], (x*tile_size, y*tile_size))
-            window.blit(scaled_image, (x*tile_size, y*tile_size))
+            map_image_list.append(scaled_image)
             if collider.is_collide(map_id[counter]):
-                collider.add_collider(window, x, y)
+                collider.add_collider(x, y)
+            counter += 1
+    return map_image_list
 
+def draw_map(window):
+    counter = 0
+    for y in range(0, map_width):
+        for x in range(0, map_height):
+            window.blit(map_image_list[counter], (x*tile_size, y*tile_size))
             counter += 1

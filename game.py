@@ -11,24 +11,23 @@ screenHeight = tileset.tile_size * tileset.map_height
 
 window = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption('Dude.Game')
-
 clock = pygame.time.Clock()
 
 table = tileset.load_tile_table("res/bettertileset.png", tileset.tile_size, tileset.tile_size)
-tileset.draw_map(window, table)
-
+tileset.load_map(table)
 #(xpos, ypos, width, height)
 player = player(200, 300, 32, 48)
 
 def redrawGameWindow():
-    tileset.draw_map(window, table)
+    tileset.draw_map(window)
     player.draw(window)
     pygame.display.update()
 
 run = True
-player_rect = player.get_collider()
 #main game loop
 while run:
+    prevx = player.x
+    prevy = player.y
     clock.tick(30)
     #list of events
     for event in pygame.event.get():
@@ -40,12 +39,12 @@ while run:
     #handles keyboard input
     keyboard.events(player)
 
-    #this slows down the game a LOT, needs to be fixed
-    for c in collider.get_collider():
-        if player.get_collider().colliderect(c):
+
+    for c in range(0, len(collider.get_colliders())):
+        if player.get_collider().colliderect(collider.get_colliders()[c]):
             print('Collide')
-            player.x = 400
-            player.y = 400
+            player.x = prevx
+            player.y = prevy
 
     redrawGameWindow()
     fps = clock.get_fps()

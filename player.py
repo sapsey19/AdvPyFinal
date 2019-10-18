@@ -40,13 +40,13 @@ class player(object):
         return (self.x, self.y)
 
     def get_collider(self):
-        rect = pygame.Rect(self.x + 8, self.y, 30, 44)
+        rect = pygame.Rect(self.x + 9, self.y + 5, 32, 44)
         #pygame.draw.rect(window, [0, 255, 0], rect, 1)
         return rect
 
     def draw(self, window):
-        rect = (self.x + 8, self.y + 4, 32, 48)
-        pygame.draw.rect(window, [0, 255, 0], rect, 1)
+        #rect = (self.x + 9, self.y + 5, 32, 44)
+        #pygame.draw.rect(window, [0, 255, 0], rect, 1)
         if self.walkCount >= 30:
             self.walkCount = 0
         if self.left:
