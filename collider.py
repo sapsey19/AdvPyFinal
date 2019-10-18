@@ -21,7 +21,7 @@ def draw_colliders(window):
         pygame.draw.rect(window, [255, 0, 0], c, 1)
 
 def is_collide(id):
-    if id == 36 or id == 34 or id == 258 or id == 257 or id == 33 or id == 66 or id == 35 or id == 323:
+    if id == 36 or id == 34 or id == 258 or id == 257 or id == 33 or id == 66 or id == 35 or id == 323 or id == 98:
         return True
     else:
         return False

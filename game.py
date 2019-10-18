@@ -21,7 +21,7 @@ player = player(200, 300, 32, 48)
 def redrawGameWindow():
     tileset.draw_map(window)
     player.draw(window)
-    #collider.draw_colliders(window)
+    collider.draw_colliders(window)
     pygame.display.update()
 
 
