@@ -21,14 +21,15 @@ player = player(200, 300, 32, 48)
 def redrawGameWindow():
     tileset.draw_map(window)
     player.draw(window)
+    #collider.draw_colliders(window)
     pygame.display.update()
+
 
 run = True
 #main game loop
 while run:
-    prevx = player.x
-    prevy = player.y
-    clock.tick(30)
+    prev_x, prev_y = player.get_pos()
+    clock.tick(60)
     #list of events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -36,17 +37,16 @@ while run:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]:
         run = False
+
     #handles keyboard input
     keyboard.events(player)
-
-
     for c in range(0, len(collider.get_colliders())):
-        if player.get_collider().colliderect(collider.get_colliders()[c]):
-            print('Collide')
-            player.x = prevx
-            player.y = prevy
+        if player.get_top_collider().colliderect(collider.get_colliders()[c]):
+            player.set_y(prev_y)
+        if player.get_left_collider().colliderect(collider.get_colliders()[c]) or player.get_right_collider().colliderect(collider.get_colliders()[c]):
+            player.set_x(prev_x)
 
     redrawGameWindow()
-    fps = clock.get_fps()
-    print(fps)
+    #fps = clock.get_fps()
+    #print(fps)
 pygame.quit()

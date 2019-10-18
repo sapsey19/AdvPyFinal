@@ -3,7 +3,6 @@ import pygame.locals
 from functools import reduce
 import collider
 
-
 map_image_list = []
 
 map_width = 32

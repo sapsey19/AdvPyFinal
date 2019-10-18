@@ -2,7 +2,6 @@ import pygame
 
 def events(player):
     keys = pygame.key.get_pressed()
-
     if keys[pygame.K_RIGHT]:
         player.right = True
         player.left = False
@@ -16,7 +15,7 @@ def events(player):
         player.down = True
         player.up = False
     if keys[pygame.K_LSHIFT]:
-        player.speed = 9
+        player.speed = 4.5
     if keys[pygame.K_LEFT] == False and keys[pygame.K_RIGHT] == False:
         player.left = False
         player.right = False
@@ -24,6 +23,6 @@ def events(player):
         player.up = False
         player.down = False
     if keys[pygame.K_LSHIFT] == False:
-        player.speed = 6
+        player.speed = 3
 
     player.update()

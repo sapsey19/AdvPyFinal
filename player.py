@@ -6,7 +6,9 @@ walkUp = [img.load('res/runu1.png'), img.load('res/runu2.png'), img.load('res/ru
 walkDown = [img.load('res/rund1.png'), img.load('res/rund2.png'), img.load('res/rund3.png'), img.load('res/rund1.png'), img.load('res/rund2.png'), img.load('res/rund3.png')]
 walkLeft = [img.load('res/runl1.png'), img.load('res/runl2.png'), img.load('res/runl3.png'), img.load('res/runl1.png'), img.load('res/runl2.png'), img.load('res/runl3.png')]
 walkRight = [img.load('res/runr1.png'), img.load('res/runr2.png'), img.load('res/runr3.png'), img.load('res/runr1.png'), img.load('res/runr2.png'), img.load('res/runr3.png')]
+#scales the player size
 scaled_size = 1.5
+
 player_width, player_height = walkUp[0].get_size()
 for i in range(0, len(walkUp)):
     temp = pygame.transform.scale(walkUp[i], (int(player_width*scaled_size), int(player_height*scaled_size)))
@@ -27,26 +29,40 @@ class player(object):
         self.height = height
         self.xvel = 0
         self.yvel = 0
-        self.speed = 6
+        self.speed = 3
         self.up = False
         self.down = False
         self.left = False
         self.right = False
         self.walkCount = 0
         self.last_pressed = 3
+        self.top_rect = pygame.Rect(x, y, 32, 48)
+        self.bottom_rect = pygame.Rect(x, y, 32, 48)
+        self.left_rect = pygame.Rect(x, y, 32, 48)
+        self.right_rect = pygame.Rect(x, y, 32, 48)
 
     def get_pos(self):
-        player_pos = (self.x, self.y)
-        return (self.x, self.y)
+        return self.x, self.y
 
-    def get_collider(self):
-        rect = pygame.Rect(self.x + 9, self.y + 5, 32, 44)
-        #pygame.draw.rect(window, [0, 255, 0], rect, 1)
-        return rect
+    def set_x(self, x):
+        self.x = x
+
+    def set_y(self, y):
+        self.y = y
+
+    def get_top_collider(self):
+        self.top_rect = pygame.Rect(self.x + 17, self.y + 20, 15, 30)
+        return self.top_rect
+
+    def get_left_collider(self):
+        self.left_rect = pygame.Rect(self.x + 10, self.y + 25, 5, 25)
+        return self.left_rect
+
+    def get_right_collider(self):
+        self.right_rect = pygame.Rect(self.x + 32, self.y + 25, 5, 25)
+        return self.right_rect
 
     def draw(self, window):
-        #rect = (self.x + 9, self.y + 5, 32, 44)
-        #pygame.draw.rect(window, [0, 255, 0], rect, 1)
         if self.walkCount >= 30:
             self.walkCount = 0
         if self.left:
@@ -74,15 +90,24 @@ class player(object):
                 window.blit(walkUp[1], (self.x, self.y))
             if self.last_pressed == 3:
                 window.blit(walkDown[1], (self.x, self.y))
+
+        #pygame.draw.rect(window, [0, 255, 0], self.top_rect, 1)
+        #pygame.draw.rect(window, [255, 0, 0], self.left_rect, 1)
+        #pygame.draw.rect(window, [0, 255, 255], self.right_rect, 1)
+
     def update(self):
         if self.left:
             self.xvel = -1
+
         if self.right:
             self.xvel = 1
         if self.up:
             self.yvel = -1
+
         if self.down:
             self.yvel = 1
+
+
 
         self.x += self.xvel * self.speed
         self.y += self.yvel * self.speed
