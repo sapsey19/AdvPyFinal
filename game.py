@@ -24,9 +24,10 @@ def redrawGameWindow():
     collider.draw_colliders(window)
     pygame.display.update()
 
-
 run = True
 #main game loop
+avg_fps = 0
+count = 0
 while run:
     prev_x, prev_y = player.get_pos()
     clock.tick(60)
@@ -37,16 +38,18 @@ while run:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]:
         run = False
-
     #handles keyboard input
     keyboard.events(player)
-    for c in range(0, len(collider.get_colliders())):
-        if player.get_top_collider().colliderect(collider.get_colliders()[c]):
-            player.set_y(prev_y)
-        if player.get_left_collider().colliderect(collider.get_colliders()[c]) or player.get_right_collider().colliderect(collider.get_colliders()[c]):
-            player.set_x(prev_x)
-
+    collider.check_collision(player, prev_x, prev_y)
     redrawGameWindow()
-    #fps = clock.get_fps()
-    #print(fps)
+
+    #below prints the average fps every second, instead of 60 times per second
+    '''
+    avg_fps += clock.get_fps()
+    count += 1
+    if count == 60:
+        print(avg_fps//60)
+        count = 0
+        avg_fps = 0
+    '''
 pygame.quit()

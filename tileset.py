@@ -9,6 +9,7 @@ map_width = 32
 map_height = 32
 tile_size = 32
 
+#takes tilesheet and chops in into a 2d list
 def load_tile_table(filename, width, height):
     image = pygame.image.load(filename).convert()
     image_width, image_height = image.get_size()
@@ -22,8 +23,10 @@ def load_tile_table(filename, width, height):
             rect = (tile_y*width, tile_x*height, width, height)
             line.append(image.subsurface(rect))
     return tile_table
+
+#loads the map, adds recangle colliders to walls
 def load_map(table):
-    f = open('res/map3.txt')
+    f = open('res/map.txt')
     #flattens 2d array of images
     block_id_list = reduce(lambda z, y :z + y, table)
     #gets block ID's for map
@@ -35,6 +38,7 @@ def load_map(table):
     counter = 0
     for y in range(0, map_width):
         for x in range(0, map_height):
+            #scaled image allows for increasing or decreasing of tilesheet blocks
             scaled_image = pygame.transform.scale(block_id_list[map_id[counter]], (tile_size, tile_size))
             map_image_list.append(scaled_image)
             if collider.is_collide(map_id[counter]):
@@ -42,6 +46,7 @@ def load_map(table):
             counter += 1
     return map_image_list
 
+#draws the map to screen
 def draw_map(window):
     counter = 0
     for y in range(0, map_width):
