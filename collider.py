@@ -27,11 +27,7 @@ def draw_colliders(window):
 
 #checks if block id should have a collider
 def is_collide(id):
-<<<<<<< HEAD
-    if id == 36 or id == 34 or id == 258 or id == 257 or id == 33 or id == 66 or id == 35 or id == 323 or id == 98:
-=======
     if id in collider_ids:
->>>>>>> WIP
         return True
     else:
         return False
