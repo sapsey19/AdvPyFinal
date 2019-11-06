@@ -7,7 +7,7 @@ walkDown = [img.load('res/rund1.png'), img.load('res/rund2.png'), img.load('res/
 walkLeft = [img.load('res/runl1.png'), img.load('res/runl2.png'), img.load('res/runl3.png'), img.load('res/runl1.png'), img.load('res/runl2.png'), img.load('res/runl3.png')]
 walkRight = [img.load('res/runr1.png'), img.load('res/runr2.png'), img.load('res/runr3.png'), img.load('res/runr1.png'), img.load('res/runr2.png'), img.load('res/runr3.png')]
 #scales the player size
-scaled_size = 1.5
+scaled_size = 1 #was 1.5
 
 player_width, player_height = walkUp[0].get_size()
 #scales the player's size
@@ -50,7 +50,7 @@ class player(object):
 
     def set_y(self, y):
         self.y = y
-    
+
     def get_top_collider(self):
         self.top_rect = pygame.Rect(self.x + 17, self.y + 20, 15, 30)
         return self.top_rect
@@ -63,34 +63,34 @@ class player(object):
         self.right_rect = pygame.Rect(self.x + 32, self.y + 25, 5, 25)
         return self.right_rect
 
-    def draw(self, window):
+    def draw(self, display):
         if self.walkCount >= 60:
             self.walkCount = 0
         if self.left:
-            window.blit(walkLeft[self.walkCount//10], (self.x, self.y))
+            display.blit(walkLeft[self.walkCount//10], (self.x, self.y))
             self.walkCount += 1
             self.last_pressed = 0
         elif self.right:
-            window.blit(walkRight[self.walkCount//10], (self.x, self.y))
+            display.blit(walkRight[self.walkCount//10], (self.x, self.y))
             self.walkCount += 1
             self.last_pressed = 1
         elif self.up:
-            window.blit(walkUp[self.walkCount//10], (self.x, self.y))
+            display.blit(walkUp[self.walkCount//10], (self.x, self.y))
             self.walkCount += 1
             self.last_pressed = 2
         elif self.down:
-            window.blit(walkDown[self.walkCount//10], (self.x, self.y))
+            display.blit(walkDown[self.walkCount//10], (self.x, self.y))
             self.walkCount += 1
             self.last_pressed = 3
         else:
             if self.last_pressed == 0:
-                window.blit(walkLeft[1], (self.x, self.y))
+                display.blit(walkLeft[1], (self.x, self.y))
             if self.last_pressed == 1:
-                window.blit(walkRight[1], (self.x, self.y))
+                display.blit(walkRight[1], (self.x, self.y))
             if self.last_pressed == 2:
-                window.blit(walkUp[1], (self.x, self.y))
+                display.blit(walkUp[1], (self.x, self.y))
             if self.last_pressed == 3:
-                window.blit(walkDown[1], (self.x, self.y))
+                display.blit(walkDown[1], (self.x, self.y))
 
         #pygame.draw.rect(window, [0, 255, 0], self.top_rect, 1)
         #pygame.draw.rect(window, [255, 0, 0], self.left_rect, 1)

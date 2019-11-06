@@ -53,3 +53,10 @@ def draw_map(window):
         for x in range(0, map_height):
             window.blit(map_image_list[counter], (x*tile_size, y*tile_size))
             counter += 1
+
+def test_draw(window, scroll):
+    counter = 0
+    for y in range(0, map_width):
+        for x in range(0, map_height):
+            window.blit(map_image_list[counter], (x*tile_size-scroll[0], y*tile_size-scroll[1]))
+            counter += 1

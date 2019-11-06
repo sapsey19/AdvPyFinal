@@ -12,6 +12,8 @@ def add_collider(x, y):
     rect_list.append(rect)
     rect_pos_list.append((x*32, y*32))
 
+
+
 #returns list of colliders
 def get_colliders():
     return rect_list
