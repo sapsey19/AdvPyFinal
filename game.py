@@ -9,6 +9,8 @@ pygame.init()
 screenWidth = tileset.tile_size * tileset.map_width
 screenHeight = tileset.tile_size * tileset.map_height
 
+display = pygame.Surface((400, 400))
+
 window = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption('Dude.Game')
 clock = pygame.time.Clock()
@@ -19,15 +21,22 @@ tileset.load_map(table)
 player = player(200, 300, 32, 48)
 
 def redrawGameWindow():
-    tileset.draw_map(window)
-    player.draw(window)
+    tileset.draw_map(display)
+    player.draw(display)
     #collider.draw_colliders(window)
+
+    #window.blit(pygame.transform.scale(display, player.get_pos()),(0,0))
+    #window.fill((0, 0, 0))
+    window.blit(display, player.get_pos())
+
     pygame.display.update()
 
 run = True
 #main game loop
 avg_fps = 0
 count = 0
+cam_x = 0
+cam_y = 0
 while run:
     prev_x, prev_y = player.get_pos()
     clock.tick(60)

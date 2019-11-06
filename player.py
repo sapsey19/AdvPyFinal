@@ -50,7 +50,7 @@ class player(object):
 
     def set_y(self, y):
         self.y = y
-    
+
     def get_top_collider(self):
         self.top_rect = pygame.Rect(self.x + 17, self.y + 20, 15, 30)
         return self.top_rect
@@ -97,6 +97,8 @@ class player(object):
         #pygame.draw.rect(window, [0, 255, 255], self.right_rect, 1)
 
     def update(self):
+        cam_x = 0
+        cam_y = 0
         if self.left:
             self.xvel = -1
         if self.right:
@@ -109,5 +111,8 @@ class player(object):
         #updates player's position
         self.x += self.xvel * self.speed
         self.y += self.yvel * self.speed
+        cam_x = self.x
+        cam_y = self.y
         self.xvel = 0
         self.yvel = 0
+        return (cam_x, cam_y)
