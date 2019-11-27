@@ -23,7 +23,7 @@ class bat(object):
         self.height = height
         self.flapCount = 0
         self.rect = pygame.Rect(x, y, 32, 32)
-        self.speed = 4
+        self.speed = 3
 
     def get_pos(self):
         return self.x, self.y
@@ -66,6 +66,6 @@ class bat(object):
         dx, dy = player.get_pos()
         diff_x = dx - self.x
         diff_y = dy - self.y
-        angle = math.atan2(diff_x, diff_y)
+        angle = math.degrees(math.atan2(diff_x, diff_y))
         self.x += self.speed * math.cos(angle)
         self.y -= self.speed * math.sin(angle)
