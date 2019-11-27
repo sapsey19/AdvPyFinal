@@ -7,7 +7,7 @@ walkDown = [img.load('res/rund1.png'), img.load('res/rund2.png'), img.load('res/
 walkLeft = [img.load('res/runl1.png'), img.load('res/runl2.png'), img.load('res/runl3.png'), img.load('res/runl1.png'), img.load('res/runl2.png'), img.load('res/runl3.png')]
 walkRight = [img.load('res/runr1.png'), img.load('res/runr2.png'), img.load('res/runr3.png'), img.load('res/runr1.png'), img.load('res/runr2.png'), img.load('res/runr3.png')]
 #scales the player size
-scaled_size = 1.5
+scaled_size = 1.25
 
 player_width, player_height = walkUp[0].get_size()
 #scales the player's size
@@ -38,7 +38,7 @@ class player(object):
         self.walkCount = 0
         self.last_pressed = 3
         self.top_rect = pygame.Rect(x, y, 32, 48)
-        self.bottom_rect = pygame.Rect(x, y, 32, 48)
+        #self.bottom_rect = pygame.Rect(x, y, 32, 48)
         self.left_rect = pygame.Rect(x, y, 32, 48)
         self.right_rect = pygame.Rect(x, y, 32, 48)
 
@@ -50,7 +50,7 @@ class player(object):
 
     def set_y(self, y):
         self.y = y
-    
+
     def get_top_collider(self):
         self.top_rect = pygame.Rect(self.x + 17, self.y + 20, 15, 30)
         return self.top_rect

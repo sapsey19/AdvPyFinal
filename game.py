@@ -4,6 +4,8 @@ import tileset
 import keyboard
 from player import player
 import collider
+from enemy import bat
+
 pygame.init()
 
 screenWidth = tileset.tile_size * tileset.map_width
@@ -17,10 +19,12 @@ table = tileset.load_tile_table("res/bettertileset.png", tileset.tile_size, tile
 tileset.load_map(table)
 #(xpos, ypos, width, height)
 player = player(200, 300, 32, 48)
+bat = bat(300, 300, 32, 32)
 
 def redrawGameWindow():
     tileset.draw_map(window)
     player.draw(window)
+    bat.draw(window)
     #collider.draw_colliders(window)
     pygame.display.update()
 
@@ -40,6 +44,7 @@ while run:
         run = False
     #handles keyboard input
     keyboard.events(player)
+    bat.move_towards_player(player)
     collider.check_collision(player, prev_x, prev_y)
     redrawGameWindow()
 

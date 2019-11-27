@@ -5,8 +5,8 @@ import collider
 
 map_image_list = []
 
-map_width = 32
-map_height = 32
+map_width = 24
+map_height = 24
 tile_size = 32
 
 #takes tilesheet and chops in into a 2d list
@@ -26,7 +26,7 @@ def load_tile_table(filename, width, height):
 
 #loads the map, adds recangle colliders to walls
 def load_map(table):
-    f = open('res/map.txt')
+    f = open('res/map2.txt')
     #flattens 2d array of images
     block_id_list = reduce(lambda z, y :z + y, table)
     #gets block ID's for map
