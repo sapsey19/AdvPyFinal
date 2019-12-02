@@ -12,7 +12,7 @@ screenWidth = tileset.tile_size * tileset.map_width
 screenHeight = tileset.tile_size * tileset.map_height
 
 window = pygame.display.set_mode((screenWidth, screenHeight))
-pygame.display.set_caption('Dude.Game')
+pygame.display.set_caption('Knight of Py')
 clock = pygame.time.Clock()
 
 table = tileset.load_tile_table("res/bettertileset.png", tileset.tile_size, tileset.tile_size)
@@ -41,15 +41,15 @@ def howtoscreen():
                 quit()
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
-        print(mouse)
-        print(click)
+        #print(mouse)
+        #print(click)
         if  444 > mouse[0] > 324 and 514 > mouse[1] > 454:
             window.blit(howto, (234, 234))
             window.blit(close, (324, 454))
-            
+
             if click[0] == 1:
                 msg = False
-                print(msg)        
+                #print(msg)
         else:
             window.blit(howto, (234, 234))
             window.blit(close, (324, 454))
@@ -62,9 +62,9 @@ def button1(x, y, w, h, img):
     click = pygame.mouse.get_pressed()
     if x + w > mouse[0] > x and y+h > mouse[1] > y:
         window.blit(img, (x, y))
-        
+
         if click[0] == 1:
-            intro = False        
+            intro = False
     else:
         window.blit(img, (x, y))
     return intro
@@ -75,9 +75,9 @@ def button2(x, y, w, h, img):
     click = pygame.mouse.get_pressed()
     if x + w > mouse[0] > x and y+h > mouse[1] > y:
         window.blit(img, (x, y))
-        
+
         if click[0] == 1:
-            howtoscreen()        
+            howtoscreen()
     else:
         window.blit(img, (x, y))
 
@@ -86,10 +86,10 @@ def button3(x, y, w, h, img):
     click = pygame.mouse.get_pressed()
     if x + w > mouse[0] > x and y+h > mouse[1] > y:
         window.blit(img, (x, y))
-        
+
         if click[0] == 1:
             pygame.quit()
-            quit()      
+            quit()
     else:
         window.blit(img, (x, y))
 
@@ -110,7 +110,7 @@ def game_title():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-                
+
         window.blit(title, (0, 0))
         intro = button1(244, 309, 280, 70, btn1)
         button2(244, 429, 280, 70, btn2)

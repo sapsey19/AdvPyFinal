@@ -5,7 +5,7 @@ rect_list = []
 #holds position of all colliders
 rect_pos_list = []
 #list of block ids that should have a collider
-collider_ids = [36, 34, 258, 257, 33, 66, 35, 323, 256, 290, 260, 227, 67, 98, 97]
+collider_ids = [36, 34, 258, 257, 33, 66, 35, 323, 256, 290, 260, 227, 67, 98, 97, 102, 164, 198, 166, 261, 226, 260]
 
 def add_collider(x, y):
     rect = pygame.Rect(x*32, y*32, 32, 32)
